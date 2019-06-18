@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class Navbar extends Component{
     //allow site to display the default props, if no props are specified at the parent
@@ -7,9 +8,15 @@ class Navbar extends Component{
         icon: 'fab fa-github',
     };
 
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        icon: PropTypes.string.isRequired,
+    }
+
     //type checking...
 
     render(){
+
         return(
             <div className = "navbar bg-primary">
                 <h1>
