@@ -1,9 +1,9 @@
 import React from 'react'
 
 //beecome stateless functional component
-const UserItem = (props) => {
+const UserItem = ({user: {login, avatar_url, html_url}}) => {
         //destructure here so that we don't have to keep calling this.state in the return method
-        const {login, avatar_url, html_url} = props.user;
+        // const {login, avatar_url, html_url} = props.user;
         return (
             <div className = "card text-center">
                 <img
