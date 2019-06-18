@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class UserItem extends Component {
-
-    render() {
+//beecome stateless functional component
+const UserItem = (props) => {
         //destructure here so that we don't have to keep calling this.state in the return method
-        const {login, avatar_url, html_url} = this.props.user;
+        const {login, avatar_url, html_url} = props.user;
         return (
             <div className = "card text-center">
                 <img
@@ -21,7 +20,6 @@ class UserItem extends Component {
               </div>
             </div>
         )
-    }
 }
 
 export default UserItem
