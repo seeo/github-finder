@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 //beecome stateless functional component
 const UserItem = ({user: {login, avatar_url, html_url}}) => {
@@ -22,4 +23,8 @@ const UserItem = ({user: {login, avatar_url, html_url}}) => {
         )
 }
 
-export default UserItem
+UserItem.propTypes = {
+    user: PropTypes.object.isRequired,
+}
+
+export default UserItem;
