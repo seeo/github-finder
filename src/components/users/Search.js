@@ -12,6 +12,8 @@ export class Search extends Component {
     //deliberately created a function that is not arrow function.
     onSubmit = (e) => {
         e.preventDefault();
+        this.props.searchUsers(this.state.text);
+        this.setState({text: ''});
         // console.log(this.state.text);
         /* we want to take the text that is submitted and get a method that reaches out to
         github api and search for a user */
