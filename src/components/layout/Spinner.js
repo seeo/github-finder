@@ -6,14 +6,17 @@ import spinner from './spinner.gif';
 const Spinner = () =>
     <Fragment>
         <img
-            src={spinner}
-            alt="Loading..."
-            style={{
-                width: '200px',
-                margin: 'auto',
-                display: 'block'
-                }}
+            src = {spinner}
+            alt = "Loading..."
+            style =  {spinnerStyle}
         />
     </Fragment>
+// above in styles: we need display block so that we can do margin auto;
+
+const spinnerStyle = {
+    width: '200px',
+    margin: 'auto',
+    display: 'block',
+}
 
 export default Spinner
