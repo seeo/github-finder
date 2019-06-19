@@ -1,9 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Search extends Component {
     state = {
         text: '',
     };
+
+    static propTypes ={
+        searchUsers: PropTypes.func.isRequired,
+    }
     //create onChange arrow function, that takes in an event parameter
     onChange = (e) => {
         //use brackets if you want to assign e.target.name as a 'key'...
