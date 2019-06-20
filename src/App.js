@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import Search from './components/users/Search';
+import Alert from './components/layout/Alert';
 import axios from 'axios';
 import './App.css';
 
@@ -10,6 +11,7 @@ class App extends Component {
         users: [],
         //there will be a moment in time while we are waiting for data to be fetched, so that if loading, we show spinner
         loading: false,
+        alert: null,
     }
 //send state down to components via props
     async componentDidMount() {
@@ -48,7 +50,13 @@ class App extends Component {
     clearUsers = () => this.setState({
             users: [],
             loading: false,
+            alert: null,
         });
+
+    //Set Alert
+    setAlert = (msg, type) => {
+        this.setState({alert: {msg, type}})
+    }
 
 
     render(){
@@ -57,10 +65,12 @@ class App extends Component {
         <div className = 'App'>
             <Navbar />
             <div className = "container">
+                <Alert alert={this.state.alert} />
                 <Search
                     searchUsers={this.searchUsers}
                     clearUsers = {this.clearUsers}
                     showClear = {users.length > 0 ? true : false}
+                    setAlert = {this.setAlert}
                 />
                 <Users
                     loading = {loading}
