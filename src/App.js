@@ -15,9 +15,11 @@ class App extends Component {
         users: [],
         //user will be an object
         user: {},
+        repos: [],
         //there will be a moment in time while we are waiting for data to be fetched, so that if loading, we show spinner
         loading: false,
         alert: null,
+
     }
 //send state down to components via props
     async componentDidMount() {
@@ -68,6 +70,25 @@ class App extends Component {
         });
     }
 
+    //get user's repos:
+    getUserRepos = async(username) => {
+        this.setState({loading: true});
+
+        const res = await axios.get(
+            `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${
+                process.env.REACT_APP_GITHUB_CLIENT_ID
+            }&client_secret=${
+                process.env.REACT_APP_GITHUB_CLIENT_SECRET
+            }`);
+        this.setState({
+            //not res.data.item
+            //getting the user's repos
+            repos: res.data,
+            loading: false,
+        });
+    }
+
+
     //clear users from state
     clearUsers = () => this.setState({
             users: [],
@@ -84,7 +105,8 @@ class App extends Component {
 
 
     render(){
-        const {users, user, loading} = this.state;
+        //destructuring here:
+        const {users, user, loading, repos, } = this.state;
         return (
         <Router>
             <div className = 'App'>
@@ -111,7 +133,9 @@ class App extends Component {
                             <User
                                 {...props}
                                 getUser = {this.getUser}
+                                getUserRepos = {this.getUserRepos}
                                 user={user}
+                                repos= {repos}
                                 loading = {loading}
                             />
                         )}
